@@ -17,7 +17,6 @@ function App() {
 
   const handleSpellClick = (spell) => {
     setSelectedSpell(spell);
-    console.log(spell);
   };
 
   const handleFavToggle = () => {

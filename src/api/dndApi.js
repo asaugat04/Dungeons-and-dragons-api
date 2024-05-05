@@ -11,3 +11,13 @@ export const fetchSpells = async () => {
     return [];
   }
 };
+
+export const fetchSpellDetails = async (name) => {
+  try {
+    const response = await axios.get(API_BASE_URL + "/" + name);
+    return response.data.results;
+  } catch (error) {
+    console.error("Error fetching spell details:", error);
+    return [];
+  }
+};
