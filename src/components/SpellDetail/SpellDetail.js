@@ -4,6 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import CardActions from "@mui/material/CardActions";
+import Skeleton from "@mui/material/Skeleton";
 import { useEffect, useState } from "react";
 import { fetchSpellDetails } from "../../api/dndApi";
 
@@ -12,7 +13,6 @@ function SpellDetail({ spell, onFavToggle, isFav }) {
   const [loading, setloading] = useState(true);
 
   useEffect(() => {
-    setloading(true);
     const loadDetails = async () => {
       setloading(true);
       const fetchedDetails = await fetchSpellDetails(spell.url);
@@ -58,7 +58,49 @@ function SpellDetail({ spell, onFavToggle, isFav }) {
     });
   };
 
-  return (
+  return loading ? (
+    <Card
+      className="loader"
+      style={{
+        width: "50vw",
+        position: "fixed",
+        overflowY: "scroll",
+        right: 0,
+        top: "2vh",
+        bottom: "12vh",
+        scrollbarWidth: "none",
+      }}
+    >
+      <CardContent>
+        <Skeleton
+          variant="rounded"
+          animation="wave"
+          width={210}
+          height={30}
+          style={{ marginBottom: 15 }}
+        />
+        {Array.from({ length: 4 }).map((_, index) => (
+          <Skeleton
+            key={index}
+            variant="rounded"
+            animation="wave"
+            width="90%"
+            height={"10vh"}
+            style={{ marginBlock: 5 }}
+          />
+        ))}
+      </CardContent>
+      <CardActions>
+        <Skeleton
+          variant="rounded"
+          animation="wave"
+          width={150}
+          height={25}
+          style={{ marginBottom: 15 }}
+        />
+      </CardActions>
+    </Card>
+  ) : (
     <Card
       className="carddd"
       style={{
