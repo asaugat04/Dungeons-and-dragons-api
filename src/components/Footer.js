@@ -5,7 +5,7 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-export default function SimpleBottomNavigation() {
+export default function Footer({ setLoadFavorites, setSelectedSpell }) {
   const [value, setValue] = React.useState(0);
 
   return (
@@ -29,8 +29,22 @@ export default function SimpleBottomNavigation() {
           setValue(newValue);
         }}
       >
-        <BottomNavigationAction label="Home" icon={<HomeIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+        <BottomNavigationAction
+          onClick={() => {
+            setSelectedSpell(null);
+            setLoadFavorites(false);
+          }}
+          label="Home"
+          icon={<HomeIcon />}
+        />
+        <BottomNavigationAction
+          onClick={() => {
+            setLoadFavorites(true);
+            setSelectedSpell(null);
+          }}
+          label="Favorites"
+          icon={<FavoriteIcon />}
+        />
       </BottomNavigation>
     </Box>
   );

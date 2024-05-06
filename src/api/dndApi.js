@@ -1,4 +1,5 @@
 import axios from "axios";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const API_BASE_URL = "https://www.dnd5eapi.co";
 
@@ -11,6 +12,7 @@ export const fetchSpells = async () => {
     return [];
   }
 };
+
 export const fetchSpellDetails = async (url) => {
   try {
     const response = await axios.get(`${API_BASE_URL}${url}`);

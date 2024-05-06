@@ -58,7 +58,7 @@ function SpellDetail({ spell, onFavToggle, isFav }) {
     });
   };
 
-  return loading ? (
+  return loading && spell ? (
     <Card
       className="loader"
       style={{
