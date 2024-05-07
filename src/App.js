@@ -21,9 +21,11 @@ function App() {
   };
   const isFav = (spell) => {
     let isfav = false;
-    favorites.forEach((element) => {
-      if (element.index == spell.index) isfav = true;
-    });
+    if (favorites && spell) {
+      favorites.forEach((element) => {
+        if (element.index == spell.index) isfav = true;
+      });
+    }
     return isfav;
   };
   const handleFavToggle = () => {

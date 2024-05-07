@@ -19,7 +19,11 @@ function SpellDetail({ spell, onFavToggle, isFav }) {
       setSpellDetails(fetchedDetails);
       setloading(false);
     };
-    loadDetails();
+    if (spell) {
+      loadDetails();
+    } else {
+      setSpellDetails(null);
+    }
   }, [spell]);
 
   // Helper component to render spell descriptions
@@ -115,14 +119,16 @@ function SpellDetail({ spell, onFavToggle, isFav }) {
     >
       <CardContent>
         <Typography variant="h5" component="div">
-          {spell.name}
+          {spell && spell.name}
         </Typography>
         {spellDetails && renderDescription(spellDetails.desc)}
       </CardContent>
       <CardActions>
-        <Button size="small" color="primary" onClick={onFavToggle}>
-          {isFav ? "Remove from Favorites" : "Add to Favorites"}
-        </Button>
+        {spell && (
+          <Button size="small" color="primary" onClick={onFavToggle}>
+            {isFav ? "Remove from Favorites" : "Add to Favorites"}
+          </Button>
+        )}
       </CardActions>
     </Card>
   );

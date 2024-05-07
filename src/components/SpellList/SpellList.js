@@ -21,7 +21,6 @@ const SpellList = ({ handleClick, loadFavorites, favorites }) => {
   };
   useEffect(() => {
     loadFavorites ? loadFavoriteSpells() : loadSpells();
-    console.log(spells);
   }, [loadFavorites, favorites]);
 
   return (
